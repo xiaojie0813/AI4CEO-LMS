@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>铁流智运 · 大宗物流运输方案智能体助手（订阅式服务 Demo）</title>
+<title>亚信货云・县县通 - 大宗物流运输方案智能体助手 - 订阅式服务 Demo</title>
 <style>
 :root{
   --b900:#071A3E;--b800:#0A2A66;--b700:#0E3D8F;--b600:#1257C4;--b500:#1668E3;--b400:#3D8BFF;
@@ -25,8 +25,9 @@ button{font-family:inherit}
 .nav-inner{max-width:1180px;margin:0 auto;padding:0 24px;height:64px;display:flex;align-items:center;gap:26px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:800;flex-shrink:0}
 .logo-ico{width:38px;height:38px;border-radius:11px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:19px;box-shadow:0 4px 12px rgba(22,104,227,.35)}
-.logo b{font-size:17px;letter-spacing:.5px;display:block;line-height:1.2}
-.logo i{display:block;font-style:normal;font-size:10px;color:var(--ink3);letter-spacing:.8px;font-weight:600}
+.logo b{font-size:17px;letter-spacing:.5px;display:block;line-height:1.2;white-space:nowrap}
+.logo i{display:block;font-style:normal;color:var(--ink3);letter-spacing:.5px;font-weight:600;white-space:nowrap}
+.logo i.logo-slogan{font-size:10.5px;color:var(--b500);letter-spacing:1px;margin-top:1px}
 .nav-links{display:flex;gap:20px;margin-left:10px;font-size:14px;color:var(--ink2);font-weight:500}
 .nav-links a{padding:6px 2px;transition:.2s}
 .nav-links a:hover{color:var(--b500)}
@@ -50,6 +51,8 @@ button{font-family:inherit}
 .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--b600);background:var(--b50);border:1px solid var(--b100);border-radius:999px;padding:6px 16px;margin-bottom:18px;letter-spacing:.5px}
 .hero h1{font-size:clamp(30px,4.2vw,46px);font-weight:800;line-height:1.25;letter-spacing:.5px}
 .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-slogan{margin-top:16px;display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:800;letter-spacing:2.5px;color:var(--b600);background:var(--b50);border:1px solid var(--b100);border-radius:999px;padding:8px 22px}
+.hero-slogan::before,.hero-slogan::after{content:'';width:26px;height:2px;background:var(--grad);border-radius:2px}
 .hero-sub{margin:18px 0 26px;color:var(--ink2);font-size:15.5px;max-width:560px}
 .hero-sub b{color:var(--b600)}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap}
@@ -376,7 +379,7 @@ footer p{font-size:12.5px}
 
 <nav class="nav">
   <div class="nav-inner">
-    <div class="logo"><span class="logo-ico">🛰️</span><div><b>铁流智运</b><i>BULKFLOW AI AGENT</i></div></div>
+    <div class="logo"><span class="logo-ico">🛰️</span><div><b>亚信货云・县县通</b><i class="logo-slogan">通路达县域，智算好运价</i></div></div>
     <div class="nav-links">
       <a href="#datasource">数据源管理</a><a href="#inquiry">运输询价</a><a href="#workflow">方案测算</a><a href="#disturb">扰动模拟</a><a href="#ledger">方案台账</a><a href="#integration">系统集成</a><a href="#pricing">订阅版本</a>
     </div>
@@ -392,6 +395,7 @@ footer p{font-size:12.5px}
     <div class="hero-copy">
       <span class="kicker">🔔 订阅式智能体服务 · 按企业账号订阅 · 免搭建</span>
       <h1>大宗物流运输方案<br><span class="grad-text">智能体助手</span></h1>
+      <div><span class="hero-slogan">通路达县域，智算好运价</span></div>
       <p class="hero-sub">面向钢厂、大宗贸易公司与第三方物流企业的 SaaS 化智能服务：输入起运地 A、目的地 B 与货物信息，接入企业自有运力 / 运价 / 场站约束，智能体自动完成<b>公路 · 铁路 · 水运多式联运寻优</b>，并支持向<b>百余家货运供应商实时询价比价</b>，秒级输出<b>最省成本</b>或<b>最快时效</b>的量化运输方案，结果可直接流转至内部业务链路。</p>
       <div class="hero-cta">
         <a href="#inquiry" class="btn btn-primary">📡 发起运输询价</a>
@@ -698,9 +702,10 @@ footer p{font-size:12.5px}
 
 <footer>
   <div class="container">
-    <div class="f-logo">🛰️ 铁流智运 BulkFlow AI</div>
+    <div class="f-logo">🛰️ 亚信货云・县县通</div>
+    <p style="color:#7FB3FF;font-weight:700;letter-spacing:2px">通路达县域，智算好运价</p>
     <p>大宗物流运输方案智能体助手 · 订阅式服务 Demo（页面内运输网络、费率与企业数据均为模拟演示数据）</p>
-    <p class="f-copy">© 2026 铁流智运 · 本页面为产品演示原型，不代表真实报价与服务条款</p>
+    <p class="f-copy">© 2026 亚信货云・县县通 · 本页面为产品演示原型，不代表真实报价与服务条款</p>
   </div>
 </footer>
 <script>
