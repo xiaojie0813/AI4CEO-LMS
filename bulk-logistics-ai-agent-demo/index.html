@@ -326,6 +326,7 @@ table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;min-width:860px}
 .inq-sup{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center;font-size:12px;font-weight:700;color:var(--ink2);box-shadow:var(--shadow)}
 .inq-sup i{font-style:normal;display:block;font-size:22px;margin-bottom:6px}
 .inq-sup span{display:block;font-size:10.5px;color:var(--ink3);font-weight:600;margin-top:2px}
+.inq-form{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);margin-bottom:18px}
 .inq-result{display:none}
 .inq-result.show{display:block}
 .cmp tr.lowest{background:linear-gradient(90deg,rgba(15,163,107,.10),rgba(15,163,107,.04))}
@@ -551,9 +552,17 @@ footer p{font-size:12.5px}
         <div class="inq-sup"><i>🏭</i>象屿物流<span>港堆一体</span></div>
         <div class="inq-sup"><i>📦</i>万华供应链<span>灵活拼载</span></div>
       </div>
-      <div class="dist-actions" style="margin-bottom:18px">
-        <button class="btn btn-primary" id="inq-btn">📡 按当前运单发起询价</button>
-        <span class="action-tip">将按方案测算表单中的运单需求（A→B / 货类 / 重量）向供应商池发起实时询价</span>
+      <div class="inq-form">
+        <div class="form-grid">
+          <div class="field"><label>起运地</label><select id="inq-from"></select></div>
+          <div class="field"><label>目的地</label><select id="inq-to"></select></div>
+          <div class="field"><label>货物品类</label><select id="inq-cargo"></select></div>
+          <div class="field"><label>重量（吨）</label><input id="inq-weight" type="number" value="300" min="10" max="60000" step="10"></div>
+        </div>
+        <div class="dist-actions" style="margin-top:16px;margin-bottom:0">
+          <button class="btn btn-primary" id="inq-btn">📡 提交运输需求，发起实时询价</button>
+          <span class="action-tip">向供应商资源池下发询价单 → 自动回收各家报价 → 比价筛选（演示为模拟报价，以正式报价为准）</span>
+        </div>
       </div>
       <div class="inq-result" id="inq-result">
         <h3 class="sub-title">询价结果 · 供应商报价对比</h3>
@@ -1219,21 +1228,38 @@ function vsSmartText(q,smart){
   return d>0?'<span style="color:var(--bad);font-weight:700">贵 '+d.toFixed(1)+'%</span>'
             :'<span style="color:var(--ok);font-weight:700">省 '+Math.abs(d).toFixed(1)+'%</span>';
 }
-function renderInquiry(rows,input,smartCost,smartTime){
-  var h='<table class="cmp"><thead><tr><th>供应商</th><th>报价</th><th>折合单价</th><th>门到门时效</th><th>vs 智能体推荐方案</th><th>服务备注</th></tr></thead><tbody>';
+function fmtTimeS(h){return h>=48?(Math.round(h/24*10)/10)+' 天':Math.round(h)+' 小时'}
+function renderInquiry(rows,input,smartCost,smartTime,smartName){
+  var h='<table class="cmp"><thead><tr><th>供应商</th><th>报价</th><th>折合单价</th><th>门到门时效</th><th>vs 智能体测算基准</th><th>服务备注</th></tr></thead><tbody>';
   rows.forEach(function(r){
     h+='<tr class="'+(r.lowest?'lowest':'')+'"><td>'+r.ico+' '+r.name+(r.lowest?' 💰':'')+'</td>'
-      +'<td class="num"><b>'+fmtWan(r.cost)+'</b></td>'
+      +'<td class="num"><b>'+fmtCny(r.cost)+'</b></td>'
       +'<td class="num">'+(r.cost/input.weight).toFixed(1)+' 元/吨</td>'
-      +'<td class="num">'+Math.round(r.time)+' 小时</td>'
+      +'<td class="num">'+fmtTimeS(r.time)+'</td>'
       +'<td class="num">'+vsSmartText(r.cost,smartCost)+'</td>'
       +'<td style="white-space:normal;min-width:150px;font-size:12.5px;color:var(--ink3)">'+r.note+'</td></tr>';
   });
   h+='</tbody></table>';
   $('#inq-table').innerHTML=h;
   var low=rows.filter(function(r){return r.lowest})[0];
-  $('#inq-note').innerHTML='✅ 已收到 <b>'+rows.length+'</b> 家供应商报价 · 最低报价 <b>'+fmtWan(low.cost)+'</b>（'+low.ico+' '+low.name+'）· 智能体推荐方案 <b>'+fmtWan(smartCost)+'</b> / '+Math.round(smartTime)+'h，询价结果可与智能路线方案对照参考';
+  $('#inq-note').innerHTML='✅ 已收到 <b>'+rows.length+'</b> 家供应商报价 · 最低报价 <b>'+fmtCny(low.cost)+'</b>（'+low.ico+' '+low.name+'）· 智能体测算基准：<b>'+smartName+'</b> '+fmtCny(smartCost)+' / '+fmtTimeS(smartTime)+' · 询价结果可与智能路线方案对照参考';
   $('#inq-result').classList.add('show');
+}
+/* 读取询价板块的运输需求表单 */
+function readInqForm(){
+  var from=$('#inq-from').value,to=$('#inq-to').value;
+  if(from===to){toast('⚠️ 起运地与目的地不能相同，请重新选择','bad');return null}
+  var weight=parseFloat($('#inq-weight').value);
+  if(!weight||weight<10||weight>60000){toast('⚠️ 重量需在 10 – 60,000 吨范围内','bad');return null}
+  var VIRT={LS:1,GZ:1};
+  if((VIRT[from]||VIRT[to])&&!(from==='LS'&&to==='GZ')){
+    toast('⚠️ 梁山港 ↔ 广州花都为演示专线，请成对选择，或改选网络节点','bad');return null;
+  }
+  var ls=(from==='LS'&&to==='GZ');
+  return {from:from,to:to,cargo:$('#inq-cargo').value,weight:weight,
+    fromName:ls?'山东梁山（梁山港）':NODES[from].name+'（'+NODES[from].tag+'）',
+    toName:ls?'广州花都':NODES[to].name+'（'+NODES[to].tag+'）',
+    ls:ls,window:'24h 内',objective:'cost'};
 }
 async function runInquiry(){
   if(state.inqRunning)return;
@@ -1241,34 +1267,43 @@ async function runInquiry(){
     toast('🔒 运输询价为「专业版」能力 · 演示环境已为您临时解锁');
     await sleep(500);
   }
-  var input=readForm();
+  var input=readInqForm();
   if(!input)return;
-  var ctx=readCtx();
-  var res=computeAll(input,ctx);
-  if(!res.plans.length){toast('⚠️ 当前运单无可行测算基准，请调整起运地 / 目的地','bad');return}
+  var smartCost,smartTime,smartName;
+  if(input.ls){
+    smartCost=(DEMO_PLANS_LS[0].rate[0]+DEMO_PLANS_LS[0].rate[1])/2*input.weight;
+    smartTime=8*24;
+    smartName='公铁联运（梁山港 → 广州花都）';
+  }else{
+    var res=computeAll(input,readCtx());
+    if(!res.plans.length){toast('⚠️ 该线路暂无可行测算基准，请调整起运地 / 目的地','bad');return}
+    smartCost=res.plans[0].cost;smartTime=res.plans[0].time;smartName=comboName(res.plans[0]);
+  }
   state.inqRunning=true;
   var btn=$('#inq-btn');
   btn.disabled=true;btn.innerHTML='<span class="spin"></span> 询价下发中 …';
   $('#inq-result').classList.remove('show');
-  var smart=res.plans[0];
   var rows=SUPPLIERS.map(function(s){
     var jitter=0.96+Math.random()*0.08;
     return {name:s.name,ico:s.ico,note:s.note,
-      cost:smart.cost*s.f*jitter,
-      time:smart.time*s.t*(0.97+Math.random()*0.06)};
+      cost:smartCost*s.f*jitter,
+      time:smartTime*s.t*(0.97+Math.random()*0.06)};
   });
   var minCost=Infinity;
   rows.forEach(function(r){if(r.cost<minCost)minCost=r.cost});
   rows.forEach(function(r){r.lowest=(r.cost===minCost)});
   rows.sort(function(a,b){return a.cost-b.cost});
   await sleep(1200);
-  renderInquiry(rows,input,smart.cost,smart.time);
-  addLedger({type:'inq',from:input.from,to:input.to,cargo:input.cargo,weight:input.weight,
-    summary:rows.length+' 家报价 · 最低 '+fmtWan(rows[0].cost)+'（'+rows[0].name+'）',
-    detail:{suppliers:rows.map(function(r){return {name:r.name,total_cny:Math.round(r.cost),hours:Math.round(r.time)}}),vs_smart_cny:Math.round(smart.cost)}});
-  btn.disabled=false;btn.innerHTML='📡 按当前运单发起询价';
+  renderInquiry(rows,input,smartCost,smartTime,smartName);
+  addLedger({type:'inq',from:input.from,to:input.to,fromName:input.fromName,toName:input.toName,
+    cargo:input.cargo,weight:input.weight,
+    summary:rows.length+' 家报价 · 最低 '+fmtCny(rows[0].cost)+'（'+rows[0].name+'）',
+    detail:{route:input.fromName+' → '+input.toName,
+      suppliers:rows.map(function(r){return {name:r.name,total_cny:Math.round(r.cost),time:fmtTimeS(r.time)}}),
+      baseline_cny:Math.round(smartCost),baseline_plan:smartName}});
+  btn.disabled=false;btn.innerHTML='📡 提交运输需求，发起实时询价';
   state.inqRunning=false;
-  toast('✅ 询价完成：'+rows.length+' 家供应商已报价 · 最低 '+fmtWan(rows[0].cost));
+  toast('✅ 询价完成：'+rows.length+' 家供应商已报价 · 最低 '+fmtCny(rows[0].cost));
 }
 /* ================= 扰动重规划 ================= */
 function drCard(p,kind){
@@ -1757,6 +1792,21 @@ window.addEventListener('DOMContentLoaded',function(){
   $('#in-to').innerHTML=codes.map(function(c){return '<option value="'+c+'"'+(c==='WH'?' selected':'')+'>'+NODES[c].name+'（'+NODES[c].tag+'）</option>'}).join('');
   $('#in-cargo').innerHTML=Object.keys(CARGO).map(function(c,i){return '<option'+(i===0?' selected':'')+'>'+c+'</option>'}).join('');
   updVolume();
+  (function(){
+    var fCodes=['LS'].concat(Object.keys(NODES));
+    $('#inq-from').innerHTML=fCodes.map(function(c){
+      var n=(c==='LS')?'梁山港 · 演示专线':NODES[c].name;
+      return '<option value="'+c+'"'+(c==='LS'?' selected':'')+'>'+n+'</option>';
+    }).join('');
+    var tCodes=['GZ'].concat(Object.keys(NODES));
+    $('#inq-to').innerHTML=tCodes.map(function(c){
+      var n=(c==='GZ')?'广州花都 · 演示专线':NODES[c].name;
+      return '<option value="'+c+'"'+(c==='GZ'?' selected':'')+'>'+n+'</option>';
+    }).join('');
+    $('#inq-cargo').innerHTML=['H型钢'].concat(Object.keys(CARGO)).map(function(c,i){
+      return '<option'+(i===0?' selected':'')+'>'+c+'</option>';
+    }).join('');
+  })();
   $('#dist-grid').innerHTML=DISTURBS.map(function(d,i){
     return '<label class="dist-card'+(i===0?' active':'')+'"><input type="radio" name="dist" value="'+d.id+'"'+(i===0?' checked':'')+'>'
       +'<div class="dist-ico">'+d.icon+'</div><b>'+d.name+'</b><p>'+d.desc+'</p><span class="dist-tag">'+d.tag+'</span></label>';
