@@ -277,19 +277,6 @@ table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;min-width:860px}
 .delta-chip.flat{background:var(--b50);border-color:var(--b100);color:var(--b600)}
 .dr-impact{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:13.5px;color:var(--ink2);line-height:1.9;box-shadow:var(--shadow)}
 .dr-impact b{color:var(--b700)}
-/* ---------- API ---------- */
-.api-tabs{display:flex;gap:10px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
-.tab{border:1.5px solid var(--line);background:#fff;color:var(--ink2);font-size:13px;font-weight:700;padding:9px 20px;border-radius:10px;cursor:pointer;transition:.2s}
-.tab:hover{border-color:var(--b300)}
-.tab.active{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(22,104,227,.3)}
-.code-card{background:#0A1834;border-radius:16px;box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid #1B3B74}
-.code-head{display:flex;align-items:center;padding:11px 18px;background:#0A2050;color:#7FB3FF;font-family:"SF Mono",Menlo,Consolas,monospace;font-size:12.5px;font-weight:600}
-.code-head span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.copy-btn{margin-left:auto;flex-shrink:0;background:rgba(120,180,255,.15);border:1px solid rgba(120,180,255,.3);color:#9FC0F5;font-size:11.5px;font-weight:700;padding:5px 13px;border-radius:8px;cursor:pointer;transition:.2s}
-.copy-btn:hover{background:rgba(120,180,255,.28);color:#fff}
-.code-pane{display:none;padding:20px 22px;overflow-x:auto;max-height:520px}
-.code-pane.active{display:block}
-.code-pane pre{font-family:"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;font-size:12.5px;line-height:1.85;color:#C9E2FF;white-space:pre}
 /* ---------- 订阅定价 ---------- */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
 .price-card{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:28px 24px;box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative;cursor:pointer;transition:.25s}
@@ -320,6 +307,42 @@ table.cmp{width:100%;border-collapse:collapse;font-size:13.5px;min-width:860px}
 .eco-card p{font-size:12px;color:var(--ink3)}
 .eco-note{text-align:center;margin-top:18px;font-size:12.5px;color:var(--ink3)}
 .eco-note b{color:var(--b600)}
+/* ---------- 数据源管理 / 询价 / 台账 / 门控 ---------- */
+.src-group-title{font-size:15px;font-weight:800;color:var(--b800);margin:24px 0 12px;display:flex;align-items:center;gap:8px}
+.src-group-title .cnt{font-size:11px;color:var(--b600);background:var(--b50);border:1px solid var(--b100);border-radius:999px;padding:1px 10px;font-weight:700}
+.lock-bar{display:none;align-items:center;gap:12px;background:#FFF7E8;border:1px dashed #E8C98A;border-radius:12px;padding:12px 18px;font-size:13px;color:#8A5A00;font-weight:600;margin-bottom:16px;flex-wrap:wrap}
+.lock-bar.show{display:flex}
+.lock-bar .btn{margin-left:auto;flex-shrink:0}
+.lock-wrap{position:relative}
+.lock-wrap.locked .data-grid{opacity:.45;pointer-events:none;filter:saturate(.4)}
+.inq-intro{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow);font-size:13.5px;color:var(--ink2);line-height:1.9;margin-bottom:18px}
+.inq-intro b{color:var(--b700)}
+.inq-tags{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.inq-tag{font-size:11.5px;font-weight:700;color:var(--b600);background:var(--b50);border:1px solid var(--b100);border-radius:999px;padding:3px 12px}
+.inq-sup-row{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:18px}
+.inq-sup{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 8px;text-align:center;font-size:12px;font-weight:700;color:var(--ink2);box-shadow:var(--shadow)}
+.inq-sup i{font-style:normal;display:block;font-size:22px;margin-bottom:6px}
+.inq-sup span{display:block;font-size:10.5px;color:var(--ink3);font-weight:600;margin-top:2px}
+.inq-result{display:none}
+.inq-result.show{display:block}
+.cmp tr.lowest{background:linear-gradient(90deg,rgba(15,163,107,.10),rgba(15,163,107,.04))}
+.cmp tr.lowest td:first-child{color:var(--ok);font-weight:800}
+.inq-note{margin-top:12px;font-size:12.5px;color:var(--ink3)}
+.inq-note b{color:var(--ok)}
+.ledger-empty{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:30px;text-align:center;color:var(--ink3);font-size:13.5px}
+.ledger-btn{border:1px solid var(--b100);background:#fff;color:var(--b600);border-radius:8px;padding:4px 12px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;margin-right:6px}
+.ledger-btn:hover{background:var(--b50)}
+.badge-type{font-size:11px;font-weight:800;border-radius:6px;padding:2px 8px;display:inline-block}
+.badge-type.plan{background:#E5F7EF;color:var(--ok)}
+.badge-type.inq{background:#EAF2FF;color:var(--b600)}
+.int-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch;margin-bottom:20px}
+.int-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 18px;box-shadow:var(--shadow);text-align:center}
+.int-card .ic{font-size:30px;display:block;margin-bottom:8px}
+.int-card b{display:block;font-size:15px;margin-bottom:4px}
+.int-card p{font-size:12.5px;color:var(--ink3);line-height:1.7}
+.int-arrow{align-self:center;color:var(--b400);font-size:24px;font-weight:800;text-align:center}
+@media (max-width:1020px){.inq-sup-row{grid-template-columns:repeat(3,1fr)}.int-flow{grid-template-columns:1fr}.int-arrow{transform:rotate(90deg)}}
+@media (max-width:680px){.inq-sup-row{grid-template-columns:repeat(2,1fr)}}
 /* ---------- 页脚 / Toast / 响应式 ---------- */
 footer{background:#071A3E;color:#8FA8CE;padding:40px 0;text-align:center;margin-top:20px}
 .f-logo{font-size:17px;font-weight:800;color:#fff;margin-bottom:8px}
@@ -355,7 +378,7 @@ footer p{font-size:12.5px}
   <div class="nav-inner">
     <div class="logo"><span class="logo-ico">🛰️</span><div><b>铁流智运</b><i>BULKFLOW AI AGENT</i></div></div>
     <div class="nav-links">
-      <a href="#workflow">功能演示</a><a href="#disturb">扰动重规划</a><a href="#api">API 对接</a><a href="#pricing">订阅版本</a><a href="#eco">智能体生态</a>
+      <a href="#datasource">数据源管理</a><a href="#inquiry">运输询价</a><a href="#workflow">方案测算</a><a href="#disturb">扰动模拟</a><a href="#ledger">方案台账</a><a href="#integration">系统集成</a><a href="#pricing">订阅版本</a>
     </div>
     <div class="nav-right">
       <span class="ver-badge" id="nav-ver">当前版本：专业版</span>
@@ -369,15 +392,15 @@ footer p{font-size:12.5px}
     <div class="hero-copy">
       <span class="kicker">🔔 订阅式智能体服务 · 按企业账号订阅 · 免搭建</span>
       <h1>大宗物流运输方案<br><span class="grad-text">智能体助手</span></h1>
-      <p class="hero-sub">面向钢厂、大宗贸易公司与第三方物流企业的 SaaS 化智能服务：输入起运地 A、目的地 B 与货物信息，接入企业自有运力 / 运价 / 场站约束，智能体自动完成<b>公路 · 铁路 · 水运多式联运寻优</b>，秒级输出<b>最省成本</b>或<b>最快时效</b>的量化运输方案。</p>
+      <p class="hero-sub">面向钢厂、大宗贸易公司与第三方物流企业的 SaaS 化智能服务：输入起运地 A、目的地 B 与货物信息，接入企业自有运力 / 运价 / 场站约束，智能体自动完成<b>公路 · 铁路 · 水运多式联运寻优</b>，并支持向<b>百余家货运供应商实时询价比价</b>，秒级输出<b>最省成本</b>或<b>最快时效</b>的量化运输方案，结果可直接流转至内部业务链路。</p>
       <div class="hero-cta">
-        <a href="#workflow" class="btn btn-primary">▶ 开始在线演示</a>
-        <a href="#pricing" class="btn btn-ghost">查看订阅方案</a>
+        <a href="#inquiry" class="btn btn-primary">📡 发起运输询价</a>
+        <a href="#workflow" class="btn btn-ghost">▶ 方案测算演示</a>
       </div>
       <div class="stats">
         <div class="stat"><b data-count="128" data-suffix=" 家">0</b><span>订阅企业</span></div>
+        <div class="stat"><b data-count="100" data-suffix="+">0</b><span>合作货运供应商</span></div>
         <div class="stat"><b data-count="3.2" data-dec="1" data-suffix=" s">0</b><span>平均方案生成耗时</span></div>
-        <div class="stat"><b data-count="46">0</b><span>联运组合模式</span></div>
         <div class="stat"><b data-count="99.5" data-dec="1" data-suffix="%">0</b><span>服务可用性 SLA</span></div>
       </div>
     </div>
@@ -405,6 +428,71 @@ footer p{font-size:12.5px}
     </div>
   </div>
 </section>
+<section class="section" id="datasource">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">数据源管理</span>
+      <h2>数据源管理 · 企业私有 + 外部生态<span class="badge-inline">专业版及以上</span></h2>
+      <p>维护企业私有业务数据，同时接入天气、区域运价、路网、船期等外部生态数据，为智能体测算提供完整数据底座</p>
+    </div>
+    <div class="lock-bar" id="ds-lock">🔒 数据源管理为「专业版 / 企业版」能力，基础版仅使用公共路网运价<a class="btn btn-sm btn-primary" href="#pricing">升级订阅</a></div>
+    <div class="lock-wrap" id="ds-wrap">
+      <h3 class="src-group-title">企业私有数据源<span class="cnt">6 类已接入</span></h3>
+      <div class="data-grid">
+        <div class="data-item"><div class="di-ico">🚛</div><div class="di-main"><b>自有车队运价<span class="di-tag">参与计算</span></b><p>120 台 · 限重 33 吨/台 · 0.28 元/吨公里（≤550km 段优先使用）</p></div><label class="switch"><input type="checkbox" id="tg-fleet" checked><span></span></label></div>
+        <div class="data-item"><div class="di-ico">🤝</div><div class="di-main"><b>合作车队运价</b><p>市场价 0.33 元/吨公里 · 覆盖华东 / 华中 / 华北干线</p></div></div>
+        <div class="data-item"><div class="di-ico">⚓</div><div class="di-main"><b>协议港口 / 堆场<span class="di-tag">参与计算</span></b><p>青岛 · 日照（优先装卸窗口，港杂费率优惠）</p></div><label class="switch"><input type="checkbox" id="tg-port" checked><span></span></label></div>
+        <div class="data-item"><div class="di-ico">🚉</div><div class="di-main"><b>铁路专用线<span class="di-tag">参与计算</span></b><p>邯郸 · 郑州自有专用线，站线作业费率与集结时效更优</p></div><label class="switch"><input type="checkbox" id="tg-spur" checked><span></span></label></div>
+        <div class="data-item"><div class="di-ico">🏗️</div><div class="di-main"><b>装卸费率</b><p>港口 10 元/吨 · 场站 8 元/吨 · 中转作业 13–16 元/吨</p></div></div>
+        <div class="data-item"><div class="di-ico">🚧</div><div class="di-main"><b>企业专属约束</b><p>夜间禁运 22:00–05:00 · 装卸窗口 08:00–18:00 · 整车限重 49t</p></div></div>
+        <div class="data-note">💡 带有 <b>「参与计算」</b> 标记的开关会真实影响测算结果 —— 关闭后重新计算，可观察方案与成本的变化。实际订阅中，此处由企业上传自有数据完成配置。</div>
+      </div>
+      <h3 class="src-group-title">外部生态数据源<span class="cnt">平台自动接入</span></h3>
+      <div class="data-grid">
+        <div class="data-item"><div class="di-ico">🌦️</div><div class="di-main"><b>气象天气</b><p>沿线气象与灾害预警 · 联动扰动模拟场景</p></div></div>
+        <div class="data-item"><div class="di-ico">💹</div><div class="di-main"><b>区域参考运价</b><p>分区域 / 分运输方式的市场参考运价指数</p></div></div>
+        <div class="data-item"><div class="di-ico">🛣️</div><div class="di-main"><b>路网限行限重</b><p>国道 / 高速限重限行与封闭管制动态</p></div></div>
+        <div class="data-item"><div class="di-ico">⚓</div><div class="di-main"><b>港口船期</b><p>沿海与长江内河船期、泊位作业动态</p></div></div>
+        <div class="data-item"><div class="di-ico">🏭</div><div class="di-main"><b>场站装卸动态</b><p>合作堆场装卸窗口期与库容水位</p></div></div>
+        <div class="data-item"><div class="di-ico">🚆</div><div class="di-main"><b>铁路班列时刻</b><p>大宗班列开行计划与到发时刻</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="inquiry">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">运输询价</span>
+      <h2>运输询价 · 多供应商实时比价<span class="badge-inline">专业版及以上</span></h2>
+      <p>提交运输需求即可发起实时询价 · 询价结果可与智能路线方案对照参考</p>
+    </div>
+    <div class="lock-bar" id="inq-lock">🔒 运输询价为「专业版」能力，基础版不可用<a class="btn btn-sm btn-primary" href="#pricing">升级订阅</a></div>
+    <div class="lock-wrap" id="inq-wrap">
+      <div class="inq-intro"><b>平台汇聚中外运、海程邦达等百余家头部货运供应商资源。</b>提交运输需求即可发起实时询价，自动获取各家服务商最新报价，筛选性价比优选方案，询价结果可与智能路线方案对照参考。
+        <div class="inq-tags"><span class="inq-tag">多供应商比价</span><span class="inq-tag">实时报价联动</span><span class="inq-tag">询价 × 智能方案对照</span></div>
+      </div>
+      <div class="inq-sup-row">
+        <div class="inq-sup"><i>🚢</i>中外运<span>综合物流</span></div>
+        <div class="inq-sup"><i>🚛</i>海程邦达<span>公铁联运</span></div>
+        <div class="inq-sup"><i>⚓</i>中远海运物流<span>海运舱位</span></div>
+        <div class="inq-sup"><i>🚆</i>中铁特货<span>铁路大宗</span></div>
+        <div class="inq-sup"><i>🏭</i>象屿物流<span>港堆一体</span></div>
+        <div class="inq-sup"><i>📦</i>万华供应链<span>灵活拼载</span></div>
+      </div>
+      <div class="dist-actions" style="margin-bottom:18px">
+        <button class="btn btn-primary" id="inq-btn">📡 按当前运单发起询价</button>
+        <span class="action-tip">将按方案测算表单中的运单需求（A→B / 货类 / 重量）向供应商池发起实时询价</span>
+      </div>
+      <div class="inq-result" id="inq-result">
+        <h3 class="sub-title">询价结果 · 供应商报价对比</h3>
+        <div class="table-wrap" id="inq-table"></div>
+        <p class="inq-note" id="inq-note"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section alt" id="workflow">
   <div class="container">
     <div class="sec-head">
@@ -416,24 +504,7 @@ footer p{font-size:12.5px}
     <div class="step">
       <div class="step-head">
         <span class="step-num">1</span>
-        <div><h3>企业基础数据接入</h3><p>订阅后配置一次 · 智能体持续融合企业私有数据与公共路网 / 班列 / 船期数据</p></div>
-        <span class="chip-ok">✓ 已接入 6 类数据</span>
-      </div>
-      <div class="data-grid">
-        <div class="data-item"><div class="di-ico">🚛</div><div class="di-main"><b>自有车队运价<span class="di-tag">参与计算</span></b><p>120 台 · 限重 33 吨/台 · 0.28 元/吨公里（≤550km 段优先使用）</p></div><label class="switch"><input type="checkbox" id="tg-fleet" checked><span></span></label></div>
-        <div class="data-item"><div class="di-ico">🤝</div><div class="di-main"><b>合作车队运价</b><p>市场价 0.33 元/吨公里 · 覆盖华东 / 华中 / 华北干线</p></div></div>
-        <div class="data-item"><div class="di-ico">⚓</div><div class="di-main"><b>协议港口 / 堆场<span class="di-tag">参与计算</span></b><p>青岛 · 日照（优先装卸窗口，港杂费率优惠）</p></div><label class="switch"><input type="checkbox" id="tg-port" checked><span></span></label></div>
-        <div class="data-item"><div class="di-ico">🚉</div><div class="di-main"><b>铁路专用线<span class="di-tag">参与计算</span></b><p>邯郸 · 郑州自有专用线，站线作业费率与集结时效更优</p></div><label class="switch"><input type="checkbox" id="tg-spur" checked><span></span></label></div>
-        <div class="data-item"><div class="di-ico">🏗️</div><div class="di-main"><b>装卸费率</b><p>港口 10 元/吨 · 场站 8 元/吨 · 中转作业 13–16 元/吨</p></div></div>
-        <div class="data-item"><div class="di-ico">🚧</div><div class="di-main"><b>企业专属约束</b><p>夜间禁运 22:00–05:00 · 装卸窗口 08:00–18:00 · 整车限重 49t</p></div></div>
-        <div class="data-note">💡 带有 <b>「参与计算」</b> 标记的开关会真实影响推理结果 —— 关闭后重新计算，可观察方案与成本的变化。实际订阅中，此处由企业上传自有数据完成配置。</div>
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-head">
-        <span class="step-num">2</span>
-        <div><h3>运单需求输入 → 智能体推理</h3><p>填写 A→B 运输需求并选择优化目标，点击按钮启动智能体自动寻优</p></div>
+        <div><h3>运单需求输入 → 智能体推理</h3><p>填写 A→B 运输需求并选择优化目标，点击按钮启动智能体自动寻优（企业数据已在「数据源管理」配置）</p></div>
       </div>
       <div class="wf-grid">
         <div class="form-card">
@@ -483,9 +554,9 @@ footer p{font-size:12.5px}
     <h3 class="sub-title">多方案量化对比</h3>
     <div class="table-wrap" id="cmp-table"></div>
     <div class="action-row">
-      <button class="btn btn-primary" id="export-btn">📄 导出方案报表（JSON）</button>
-      <button class="btn btn-ghost" id="push-btn">🔗 推送至 TMS（API）</button>
-      <span class="action-tip">报表结构兼容主流 TMS / WMS 字段映射，也可通过 API 实时输出</span>
+      <button class="btn btn-primary" id="export-btn">📄 导出方案报表</button>
+      <button class="btn btn-ghost" id="push-btn">📤 流转至内部业务链路</button>
+      <span class="action-tip">报表支持导出归档，方案结果可直接流转至内部调度、仓储作业链路（企业集群版）</span>
     </div>
   </div>
 </section>
@@ -507,86 +578,43 @@ footer p{font-size:12.5px}
     </div>
   </div>
 </section>
-<section class="section" id="api">
+
+<section class="section" id="ledger">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-tag">方案台账</span>
+      <h2>方案台账 · 历史测算与询价记录</h2>
+      <p>历史测算记录、询价记录、方案预览、报表导出 · 订阅账号下自动留存</p>
+    </div>
+    <div class="table-wrap" id="ledger-table"></div>
+    <div class="action-row">
+      <button class="btn btn-ghost" id="ledger-export-btn">📄 导出全部台账记录</button>
+      <span class="action-tip">台账支持报表导出归档，并可回流至内部业务流程（企业集群版）</span>
+    </div>
+  </div>
+</section>
+<section class="section" id="integration">
   <div class="container">
     <div class="sec-head">
       <span class="sec-tag">系统集成</span>
-      <h2>API 对接 · 融入客户自有 TMS / WMS</h2>
-      <p>方案报表导出 + 标准 REST API + 扰动事件 Webhook 推送 · 与企业系统无缝集成</p>
+      <h2>系统集成 · 融入客户现有业务体系<span class="badge-inline">业务流程互通 · 企业集群版</span></h2>
+      <p>支持融入客户现有业务体系，运输推荐结果可直接流转至内部调度、仓储作业链路</p>
     </div>
-    <div class="api-tabs">
-      <button class="tab active" data-pane="p1">① 创建运输方案 · 请求</button>
-      <button class="tab" data-pane="p2">② 方案响应</button>
-      <button class="tab" data-pane="p3">③ 扰动重规划 · Webhook 推送</button>
+    <div class="lock-bar" id="int-lock">🔒 业务流程互通为「企业集群版」能力，当前版本可导出方案报表归档<a class="btn btn-sm btn-primary" href="#pricing">升级订阅</a></div>
+    <div class="int-flow">
+      <div class="int-card"><span class="ic">🧭</span><b>智能体输出运输方案</b><p>推荐主方案 + 备选方案 · 成本 / 时效 / 风险量化 · 可与询价结果对照</p></div>
+      <div class="int-arrow">→</div>
+      <div class="int-card"><span class="ic">🔄</span><b>方案流转至业务链路</b><p>运输推荐结果直接进入内部调度、仓储作业流程，无需人工二次录入</p></div>
+      <div class="int-arrow">→</div>
+      <div class="int-card"><span class="ic">🏭</span><b>保持原有作业习惯</b><p>业务人员在熟悉的系统中即可查看与执行方案 · 全流程业务连贯</p></div>
     </div>
-    <div class="code-card">
-      <div class="code-head"><span id="api-endpoint">POST https://api.tieluyun.com/v1/transport/plans</span><button class="copy-btn" id="api-copy">📋 复制</button></div>
-      <div class="code-pane active" id="p1"><pre>POST /v1/transport/plans HTTP/1.1
-Host: api.tieluyun.com
-Authorization: Bearer sk_live_****_****_0428
-Content-Type: application/json
-
-{
-  "enterprise_id": "STEEL-0428",
-  "waybill": {
-    "origin": "青岛",
-    "destination": "武汉",
-    "cargo": "铁矿石",
-    "weight_t": 5000,
-    "volume_m3": 2273,
-    "load_window": "24h"
-  },
-  "objective": "min_cost",            // min_cost 最省成本 | min_time 最快时效
-  "constraints": {
-    "use_own_fleet": true,            // 使用企业自有车队运价
-    "agreement_ports": ["青岛", "日照"],
-    "rail_spur_nodes": ["邯郸", "郑州"],
-    "night_ban": "22:00-05:00",       // 企业夜间禁运约束
-    "max_gvw_t": 49                   // 整车限重
-  }
-}</pre></div>
-      <div class="code-pane" id="p2"><pre>HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "plan_id": "plan_8f3a2c91",
-  "status": "ok",
-  "elapsed_ms": 3210,
-  "recommended": {
-    "mode_chain": "水运 + 水运",
-    "route": ["青岛", "南京（转港作业）", "武汉"],
-    "total_cost_cny": 445750,
-    "total_hours": 149,
-    "transfers": 1,
-    "handling_wait_hours": 44,
-    "risk": { "port_congestion": "高", "truck_detention": "低" },
-    "score": 92
-  },
-  "alternatives": [ { "...": "共 3 个备选方案（水铁联运 / 铁路直达 / 公路直达）" } ],
-  "decision_basis": "海进江水运费率 0.045 元/吨公里，较公路直达节省成本约 78.5%…"
-}</pre></div>
-      <div class="code-pane" id="p3"><pre>// 智能体重规划完成后，主动推送至客户 TMS/Webhook
-POST https://your-company.com/tms/webhook HTTP/1.1
-X-Tieluyun-Signature: sha256=9f2a…
-Content-Type: application/json
-
-{
-  "event": "disturbance.replanned",
-  "plan_id": "plan_8f3a2c91",
-  "disturbance": {
-    "type": "typhoon_lockdown",
-    "detail": "长江口台风封航 72h，海进江航线停运"
-  },
-  "changes": {
-    "mode_chain": "水运 + 水运" → "铁路",
-    "total_cost_cny": 445750 → 1108000,
-    "total_hours": 149 → 78
-  },
-  "impact": "成本 +148.7% · 时效 -47.7% · 已自动切换铁路直达",
-  "replanned_at": "2026-11-15T09:42:18+08:00"
-}</pre></div>
+    <div class="eco-grid">
+      <div class="eco-card"><span>📤</span><b>方案流转同步</b><p>方案流转同步至现有业务平台，测算即达执行</p></div>
+      <div class="eco-card"><span>🕹️</span><b>调度链路贯通</b><p>与原有调度作业流程贯通，指令自动衔接</p></div>
+      <div class="eco-card"><span>🏗️</span><b>仓储作业联动</b><p>与仓储作业流程贯通衔接，到站即安排卸储</p></div>
+      <div class="eco-card"><span>🔁</span><b>全流程业务连贯</b><p>询价 → 测算 → 流转 → 执行全链闭环</p></div>
     </div>
-    <p class="action-tip" style="text-align:center;margin-top:14px">API 调用额度与 Webhook 推送随订阅版本阶梯开放（基础版 1,000 次/月 · 专业版 100,000 次/月 · 集群版不限）</p>
+    <p class="action-tip" style="text-align:center;margin-top:18px">标签小字：业务链路互通 · 方案流转同步 ｜ 适配钢厂、贸易商与物流企业既有业务作业习惯</p>
   </div>
 </section>
 <section class="section alt" id="pricing">
@@ -598,46 +626,47 @@ Content-Type: application/json
     </div>
     <div class="price-grid">
       <div class="price-card" data-v="basic">
-        <span class="pv-name">基础版</span>
+        <span class="pv-name">基础订阅版</span>
         <div class="pv-price"><b>¥2.98万</b><span>/ 年 / 企业账号</span></div>
-        <p class="pv-for">适合单一业务线的大宗贸易与物流团队</p>
+        <p class="pv-for">适合中小贸易商、小型物流公司</p>
         <ul class="feat">
-          <li>✅ A→B 多式联运方案生成</li>
-          <li>✅ 最省成本 / 最快时效双目标寻优</li>
-          <li>✅ 企业数据接入（车队/运价/场站）</li>
-          <li>✅ 方案量化对比与报表导出</li>
-          <li>✅ API 1,000 次 / 月</li>
-          <li class="dim">➖ 扰动重规划（专业版）</li>
-          <li class="dim">➖ 多智能体联动（集群版）</li>
+          <li>✅ A→B 路线方案推荐</li>
+          <li>✅ 基础公共路网运价</li>
+          <li>✅ 手动录入运单</li>
+          <li>✅ 导出 PDF 方案报表</li>
+          <li class="dim">➖ 企业自有数据接入（专业版）</li>
+          <li class="dim">➖ 运输询价（专业版）</li>
+          <li class="dim">➖ 业务流程互通（集群版）</li>
         </ul>
         <button class="btn btn-ghost">选择基础版</button>
       </div>
       <div class="price-card hot sel" data-v="pro">
         <span class="pv-ribbon">⭐ 最受欢迎</span>
-        <span class="pv-name">专业版</span>
+        <span class="pv-name">专业订阅版</span>
         <div class="pv-price"><b>¥8.88万</b><span>/ 年 / 企业账号</span></div>
-        <p class="pv-for">适合有多线路、多扰动场景的钢厂与 3PL</p>
+        <p class="pv-for">适合中型物流公司、独立贸易企业</p>
         <ul class="feat">
           <li>✅ 含基础版全部能力</li>
-          <li>✅ 扰动重规划（封路 / 船期 / 压港 / 运力）</li>
-          <li>✅ 滞港 / 压车风险量化预测</li>
-          <li>✅ 无限方案枚举 + 多目标评分</li>
-          <li>✅ API 100,000 次 / 月 + TMS/Webhook 对接</li>
-          <li>✅ 专属数据接入顾问 · SLA 99.5%</li>
+          <li>✅ 上传企业自有运价 / 运力库 / 约束</li>
+          <li>✅ 数据源管理（私有 + 外部生态）</li>
+          <li>✅ 扰动重规划 · 地图可视化</li>
+          <li>✅ 运输询价（多供应商实时比价）</li>
+          <li>✅ 方案台账 · 报表导出</li>
+          <li class="dim">➖ 业务流程互通（集群版）</li>
         </ul>
         <button class="btn btn-ghost">当前演示版本</button>
       </div>
       <div class="price-card" data-v="ent">
-        <span class="pv-name">企业集群版</span>
+        <span class="pv-name">企业集群订阅版</span>
         <div class="pv-price"><b>定制报价</b><span>按集群规模</span></div>
-        <p class="pv-for">适合集团型企业与供应链平台</p>
+        <p class="pv-for">适合钢厂、大型供应链集团</p>
         <ul class="feat">
           <li>✅ 含专业版全部能力</li>
-          <li>✅ 多智能体联动（调度 / 货权风控 / 料场）</li>
-          <li>✅ 物流控制塔协同大屏</li>
-          <li>✅ 集团多账号矩阵与权限体系</li>
+          <li>✅ 业务流程互通（系统集成）</li>
+          <li>✅ 对接大宗智能体集群</li>
+          <li>✅ 物流控制塔联动</li>
+          <li>✅ 多账号子权限体系</li>
           <li>✅ 私有化 / 专有云部署</li>
-          <li>✅ SLA 99.9% + 驻场实施</li>
         </ul>
         <button class="btn btn-ghost">联系顾问</button>
       </div>
@@ -663,7 +692,7 @@ Content-Type: application/json
       <div class="eco-card"><span>🛡️</span><b>货权风控智能体</b><p>在途货权监控 · 异常轨迹预警</p></div>
       <div class="eco-card"><span>🏭</span><b>料场智能体</b><p>堆场库存平衡 · 装卸排程优化</p></div>
     </div>
-    <p class="eco-note">🔓 以上联动能力由<b>「企业集群版」</b>订阅解锁 · 支持与贵司既有 ERP / MES / WMS 对接</p>
+    <p class="eco-note">🔓 以上联动能力由<b>「企业集群订阅版」</b>解锁 · 支持与贵司既有业务系统及智能体集群对接</p>
   </div>
 </section>
 
@@ -738,7 +767,7 @@ var DISTURBS=[
   {id:'congest',icon:'🏗️',name:'目的港压港',desc:'目的地港口 / 场站作业拥堵，等泊等线严重',tag:'影响：铁路/水运交付延误'},
   {id:'fleet',  icon:'🚛',name:'运力骤减',desc:'自有车队 60% 运力临时检修，需外调市场运力',tag:'影响：公路成本与时效'}
 ];
-var state={version:'pro',current:null,disturbed:false,running:false};
+var state={version:'pro',current:null,disturbed:false,running:false,ledger:[],inqRunning:false};
 /* ================= 寻优引擎 ================= */
 function edgeKey(a,b){return [a,b].sort().join('-')}
 function edgeBlocked(mode,a,b,ctx){
@@ -1080,7 +1109,76 @@ async function runAgent(){
   setStatus('done','完成');
   btn.disabled=false;btn.innerHTML='🚀 智能体开始计算';
   state.running=false;
+  addLedger({type:'plan',from:input.from,to:input.to,cargo:input.cargo,weight:input.weight,
+    summary:comboName(res.plans[0])+' · '+fmtWan(res.plans[0].cost)+' · '+Math.round(res.plans[0].time)+'h'+(input.objective==='cost'?'（最省成本）':'（最快时效）'),
+    res:res,input:input});
   toast('✅ 方案生成完毕：'+comboName(res.plans[0])+' · '+fmtWan(res.plans[0].cost));
+}
+/* ================= 运输询价 ================= */
+var SUPPLIERS=[
+  {name:'中外运',ico:'🚢',f:1.00,t:1.00,note:'海进江 + 末端配送 · 协议价稳定'},
+  {name:'海程邦达',ico:'🚛',f:1.04,t:0.88,note:'公铁联运 · 门到门一站式'},
+  {name:'中远海运物流',ico:'⚓',f:0.96,t:1.18,note:'海运舱位保障 · 班轮稳定'},
+  {name:'中铁特货',ico:'🚆',f:1.12,t:0.72,note:'铁路直达 · 适合大批量'},
+  {name:'象屿物流',ico:'🏭',f:1.16,t:0.95,note:'港口 + 堆场一体化服务'},
+  {name:'万华供应链',ico:'📦',f:0.92,t:1.35,note:'灵活拼载 · 小批量友好'}
+];
+function vsSmartText(q,smart){
+  var d=(q-smart)/smart*100;
+  if(Math.abs(d)<0.5)return '<span style="color:var(--ink3)">基本持平</span>';
+  return d>0?'<span style="color:var(--bad);font-weight:700">贵 '+d.toFixed(1)+'%</span>'
+            :'<span style="color:var(--ok);font-weight:700">省 '+Math.abs(d).toFixed(1)+'%</span>';
+}
+function renderInquiry(rows,input,smartCost,smartTime){
+  var h='<table class="cmp"><thead><tr><th>供应商</th><th>报价</th><th>折合单价</th><th>门到门时效</th><th>vs 智能体推荐方案</th><th>服务备注</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    h+='<tr class="'+(r.lowest?'lowest':'')+'"><td>'+r.ico+' '+r.name+(r.lowest?' 💰':'')+'</td>'
+      +'<td class="num"><b>'+fmtWan(r.cost)+'</b></td>'
+      +'<td class="num">'+(r.cost/input.weight).toFixed(1)+' 元/吨</td>'
+      +'<td class="num">'+Math.round(r.time)+' 小时</td>'
+      +'<td class="num">'+vsSmartText(r.cost,smartCost)+'</td>'
+      +'<td style="white-space:normal;min-width:150px;font-size:12.5px;color:var(--ink3)">'+r.note+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  $('#inq-table').innerHTML=h;
+  var low=rows.filter(function(r){return r.lowest})[0];
+  $('#inq-note').innerHTML='✅ 已收到 <b>'+rows.length+'</b> 家供应商报价 · 最低报价 <b>'+fmtWan(low.cost)+'</b>（'+low.ico+' '+low.name+'）· 智能体推荐方案 <b>'+fmtWan(smartCost)+'</b> / '+Math.round(smartTime)+'h，询价结果可与智能路线方案对照参考';
+  $('#inq-result').classList.add('show');
+}
+async function runInquiry(){
+  if(state.inqRunning)return;
+  if(state.version==='basic'){
+    toast('🔒 运输询价为「专业版」能力 · 演示环境已为您临时解锁');
+    await sleep(500);
+  }
+  var input=readForm();
+  if(!input)return;
+  var ctx=readCtx();
+  var res=computeAll(input,ctx);
+  if(!res.plans.length){toast('⚠️ 当前运单无可行测算基准，请调整起运地 / 目的地','bad');return}
+  state.inqRunning=true;
+  var btn=$('#inq-btn');
+  btn.disabled=true;btn.innerHTML='<span class="spin"></span> 询价下发中 …';
+  $('#inq-result').classList.remove('show');
+  var smart=res.plans[0];
+  var rows=SUPPLIERS.map(function(s){
+    var jitter=0.96+Math.random()*0.08;
+    return {name:s.name,ico:s.ico,note:s.note,
+      cost:smart.cost*s.f*jitter,
+      time:smart.time*s.t*(0.97+Math.random()*0.06)};
+  });
+  var minCost=Infinity;
+  rows.forEach(function(r){if(r.cost<minCost)minCost=r.cost});
+  rows.forEach(function(r){r.lowest=(r.cost===minCost)});
+  rows.sort(function(a,b){return a.cost-b.cost});
+  await sleep(1200);
+  renderInquiry(rows,input,smart.cost,smart.time);
+  addLedger({type:'inq',from:input.from,to:input.to,cargo:input.cargo,weight:input.weight,
+    summary:rows.length+' 家报价 · 最低 '+fmtWan(rows[0].cost)+'（'+rows[0].name+'）',
+    detail:{suppliers:rows.map(function(r){return {name:r.name,total_cny:Math.round(r.cost),hours:Math.round(r.time)}}),vs_smart_cny:Math.round(smart.cost)}});
+  btn.disabled=false;btn.innerHTML='📡 按当前运单发起询价';
+  state.inqRunning=false;
+  toast('✅ 询价完成：'+rows.length+' 家供应商已报价 · 最低 '+fmtWan(rows[0].cost));
 }
 /* ================= 扰动重规划 ================= */
 function drCard(p,kind){
@@ -1106,7 +1204,7 @@ function renderDisturb(d,oldRes,newRes,input){
     +'<div class="log-line"><span class="log-t">t+0.0s</span><span class="log-x">⚡ 扰动接收：'+d.name+'（'+d.tag+'）</span></div>'
     +'<div class="log-line"><span class="log-t">t+0.6s</span><span class="log-x">🔍 影响评估：'+(same?'原主方案仍可行，量化偏差如下':'原主方案关键资源受直接影响，需重算')+'</span></div>'
     +'<div class="log-line"><span class="log-t">t+1.4s</span><span class="log-x">🔄 重新枚举 '+newRes.total+' 条组合 → '+newRes.feasible+' 类有效方案，重排序完成</span></div>'
-    +'<div class="log-line done"><span class="log-t">t+2.1s</span><span class="log-x">✅ '+(same?'决策：维持原方案 + 输出缓释建议':'决策：切换至新主方案 + 推送变更事件 disturbance.replanned')+'</span></div>'
+    +'<div class="log-line done"><span class="log-t">t+2.1s</span><span class="log-x">✅ '+(same?'决策：维持原方案 + 输出缓释建议':'决策：切换至新主方案 + 同步内部业务链路')+'</span></div>'
     +'</div>'
     +'<div class="dr-compare">'+drCard(old0,'old')
     +'<div class="dr-arrow"><span class="ar">⟳</span>智能体<br>重规划</div>'
@@ -1119,7 +1217,7 @@ function renderDisturb(d,oldRes,newRes,input){
     +'<div class="dr-impact"><b>变更影响评估：</b>'
     +(same
       ?'扰动未改变方案排序，原主方案在当前优化目标下仍为最优，智能体维持原方案并持续监控。缓释建议：预约目的港加急装卸窗口约可追回 12–24h；扰动消除后系统将自动回切全局最优。'
-      :'原主方案受扰动直接影响后不再最优，智能体已切换至'+comboName(new0)+'。路线：'+routeText(new0)+'。变更已同步推送至贵司 TMS / Webhook（事件 disturbance.replanned），相关派车 / 订舱指令可一键更新。')
+      :'原主方案受扰动直接影响后不再最优，智能体已切换至'+comboName(new0)+'。路线：'+routeText(new0)+'。变更已同步至贵司内部业务链路，相关派车 / 订舱指令可一键更新。')
     +' <br><b>影响量化：</b>总成本 '+fmtWan(old0.cost)+' → '+fmtWan(new0.cost)+'（'+(dC>=0?'+':'')+(Math.abs(dC/old0.cost)<0.001?'<0.1':(dC/old0.cost*100).toFixed(1))+'%）；总时长 '+Math.round(old0.time)+'h → '+Math.round(new0.time)+'h（'+(dT>=0?'+':'')+(Math.abs(dT/old0.time)<0.001?'<0.1':(dT/old0.time*100).toFixed(1))+'%）。'
     +'</div>';
   $('#dresult-wrap').classList.add('show');
@@ -1163,6 +1261,74 @@ function restoreBase(){
   renderResults(state.current.res,state.current.input,false);
   toast('↩️ 已恢复基准方案');
 }
+/* ================= 方案台账 ================= */
+function addLedger(e){
+  e.id='L'+Date.now().toString(36)+Math.floor(Math.random()*900+100);
+  e.time=new Date().toLocaleString('zh-CN',{hour12:false});
+  state.ledger.unshift(e);
+  if(state.ledger.length>50)state.ledger.pop();
+  renderLedger();
+}
+function renderLedger(){
+  var el=$('#ledger-table');
+  if(!el)return;
+  if(!state.ledger.length){
+    el.innerHTML='<div class="ledger-empty">📭 暂无台账记录 · 生成运输方案或发起询价后将自动留存于此</div>';
+    return;
+  }
+  var h='<table class="cmp"><thead><tr><th>时间</th><th>类型</th><th>线路</th><th>货物 · 重量</th><th>关键结果</th><th>操作</th></tr></thead><tbody>';
+  state.ledger.forEach(function(e){
+    h+='<tr><td class="num" style="white-space:nowrap">'+e.time+'</td>'
+      +'<td><span class="badge-type '+e.type+'">'+(e.type==='plan'?'方案测算':'运输询价')+'</span></td>'
+      +'<td>'+NODES[e.from].name+' → '+NODES[e.to].name+'</td>'
+      +'<td>'+e.cargo+' · '+e.weight.toLocaleString()+' 吨</td>'
+      +'<td style="white-space:normal;font-size:12.5px">'+e.summary+(e.demo?' <span style="color:#AEBBCE">（演示数据）</span>':'')+'</td>'
+      +'<td style="white-space:nowrap">'
+      +(e.type==='plan'&&e.res?'<button class="ledger-btn" data-act="view" data-id="'+e.id+'">预览</button>':'')
+      +'<button class="ledger-btn" data-act="export" data-id="'+e.id+'">导出</button></td></tr>';
+  });
+  el.innerHTML=h+'</tbody></table>';
+  $$('#ledger-table .ledger-btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var e=state.ledger.filter(function(x){return x.id===b.dataset.id})[0];
+      if(!e)return;
+      if(b.dataset.act==='view'&&e.res){
+        state.current={input:e.input,ctx:readCtx(),res:e.res};
+        state.disturbed=false;
+        $('#replan-banner').classList.remove('show');
+        $('#dresult-wrap').classList.remove('show');
+        renderResults(e.res,e.input);
+        toast('👁 已载入台账方案：'+e.summary.split(' · ')[0]);
+      }else{
+        downloadJSON('台账记录-'+e.time.replace(/[/: ]/g,'-')+'.json',JSON.stringify({
+          record_id:e.id,type:e.type==='plan'?'transport_plan':'inquiry',
+          time:e.time,route:{origin:NODES[e.from].name,destination:NODES[e.to].name},
+          cargo:e.cargo,weight_t:e.weight,summary:e.summary,detail:e.detail||null
+        },null,2));
+        toast('📄 台账记录已导出');
+      }
+    });
+  });
+}
+function downloadJSON(name,text){
+  var blob=new Blob([text],{type:'application/json'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=name;
+  document.body.appendChild(a);a.click();a.remove();
+  setTimeout(function(){URL.revokeObjectURL(a.href)},1000);
+}
+function exportLedger(){
+  if(!state.ledger.length){toast('⚠️ 暂无台账记录可导出','bad');return}
+  var data={exported_at:new Date().toISOString(),count:state.ledger.length,
+    records:state.ledger.map(function(e){
+      return {record_id:e.id,type:e.type,time:e.time,
+        route:NODES[e.from].name+' → '+NODES[e.to].name,
+        cargo:e.cargo,weight_t:e.weight,summary:e.summary,
+        detail:e.detail||null};
+    })};
+  downloadJSON('方案台账导出-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(data,null,2));
+  toast('📄 全部 '+state.ledger.length+' 条台账记录已导出');
+}
 /* ================= 导出 / API / 版本 / 初始化 ================= */
 function planDTO(p){
   return {mode_chain:comboName(p),route:routeText(p).split(' → '),
@@ -1186,26 +1352,9 @@ function exportJSON(){
     alternatives:c.res.plans.slice(1).map(planDTO),
     decision_basis:reason(rec,c.res,c.input)
   };
-  var blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  var a=document.createElement('a');
-  a.href=URL.createObjectURL(blob);
-  a.download='运输方案报告-'+NODES[c.input.from].name+'-'+NODES[c.input.to].name+'.json';
-  document.body.appendChild(a);a.click();a.remove();
-  setTimeout(function(){URL.revokeObjectURL(a.href)},1000);
-  toast('📄 方案报表已导出（JSON）· 可直接对接 TMS / WMS');
+  downloadJSON('运输方案报告-'+NODES[c.input.from].name+'-'+NODES[c.input.to].name+'.json',JSON.stringify(data,null,2));
+  toast('📄 方案报表已导出归档 · 可在方案台账中查看留存记录');
 }
-function copyText(txt,tip){
-  function fallback(){
-    var ta=document.createElement('textarea');
-    ta.value=txt;document.body.appendChild(ta);ta.select();
-    try{document.execCommand('copy');toast('📋 '+tip)}catch(e){toast('⚠️ 复制失败，请手动选择复制','bad')}
-    ta.remove();
-  }
-  if(navigator.clipboard&&navigator.clipboard.writeText){
-    navigator.clipboard.writeText(txt).then(function(){toast('📋 '+tip)})['catch'](fallback);
-  }else fallback();
-}
-var API_ENDPOINTS={p1:'POST https://api.tieluyun.com/v1/transport/plans',p2:'200 OK · application/json（方案响应）',p3:'POST https://your-company.com/tms/webhook（扰动推送）'};
 function heroPreview(){
   var items=[
     {t:'方案 A · 海进江水运（青岛→南京→武汉）',d:'成本 44.6 万 · 时效 149h · 滞港风险 高'},
@@ -1245,9 +1394,14 @@ window.addEventListener('DOMContentLoaded',function(){
   $('#dist-btn').addEventListener('click',runDisturb);
   $('#restore-btn').addEventListener('click',restoreBase);
   $('#export-btn').addEventListener('click',exportJSON);
+  $('#inq-btn').addEventListener('click',runInquiry);
+  $('#ledger-export-btn').addEventListener('click',exportLedger);
   $('#push-btn').addEventListener('click',function(){
     if(!state.current){toast('⚠️ 请先生成运输方案','bad');return}
-    toast('🔗 已推送至 TMS（演示）· 事件 transport.plan.created · plan_id 已同步返回');
+    if(state.version!=='ent'){
+      toast('🔒 业务流程互通为「企业集群版」能力 · 演示环境已为您临时模拟流转');
+    }
+    toast('📤 方案已流转至内部业务链路（演示）· 调度 / 仓储作业单已同步，保持原有作业习惯');
   });
   $('#in-weight').addEventListener('input',updVolume);
   $('#in-cargo').addEventListener('change',updVolume);
@@ -1261,27 +1415,15 @@ window.addEventListener('DOMContentLoaded',function(){
       $$('.dist-card').forEach(function(c){c.classList.toggle('active',c.querySelector('input').checked)});
     });
   });
-  $$('.tab').forEach(function(t){
-    t.addEventListener('click',function(){
-      $$('.tab').forEach(function(x){x.classList.remove('active')});
-      t.classList.add('active');
-      $$('.code-pane').forEach(function(p){p.classList.remove('active')});
-      $('#'+t.dataset.pane).classList.add('active');
-      $('#api-endpoint').textContent=API_ENDPOINTS[t.dataset.pane];
-    });
-  });
-  $('#api-copy').addEventListener('click',function(){
-    var active=$('.code-pane.active pre');
-    if(active)copyText(active.textContent,'API 示例已复制到剪贴板');
-  });
   $$('.price-card').forEach(function(c){
     c.addEventListener('click',function(){
       $$('.price-card').forEach(function(x){x.classList.remove('sel')});
       c.classList.add('sel');
       state.version=c.dataset.v;
-      var names={basic:'基础版',pro:'专业版',ent:'企业集群版'};
+      var names={basic:'基础订阅版',pro:'专业订阅版',ent:'企业集群订阅版'};
       $('#nav-ver').textContent='当前版本：'+names[state.version];
-      toast('🔔 已切换演示版本：'+names[state.version]+(state.version==='ent'?' · 多智能体联动已解锁':(state.version==='basic'?' · 扰动重规划需专业版及以上':'')));
+      applyVersion();
+      toast('🔔 已切换演示版本：'+names[state.version]+(state.version==='ent'?' · 业务流程互通已解锁':(state.version==='basic'?' · 数据源管理 / 运输询价需专业版及以上':'')));
     });
   });
   $$('.stat b').forEach(function(el){
@@ -1289,7 +1431,38 @@ window.addEventListener('DOMContentLoaded',function(){
     counter(el,target,dec,suf,1500);
   });
   heroPreview();
+  applyVersion();
+  seedLedger();
 });
+/* 版本门控：按订阅版本切换板块可用性 */
+function applyVersion(){
+  var v=state.version;
+  var basicLock=(v==='basic');
+  $('#ds-lock').classList.toggle('show',basicLock);
+  $('#ds-wrap').classList.toggle('locked',basicLock);
+  $('#inq-lock').classList.toggle('show',basicLock);
+  $('#inq-wrap').classList.toggle('locked',basicLock);
+  $('#int-lock').classList.toggle('show',v!=='ent');
+}
+/* 预置台账演示记录 */
+function seedLedger(){
+  if(state.ledger.length)return;
+  var i1={from:'QD',to:'WH',cargo:'铁矿石',weight:5000,window:'24h 内',objective:'cost'};
+  var r1=computeAll(i1,{fleet:true,agreePort:true,spur:true});
+  addLedger({type:'plan',from:'QD',to:'WH',cargo:'铁矿石',weight:5000,
+    summary:comboName(r1.plans[0])+' · '+fmtWan(r1.plans[0].cost)+' · '+Math.round(r1.plans[0].time)+'h（最省成本）',
+    demo:true,res:r1,input:i1});
+  var i2={from:'RZ',to:'HD',cargo:'动力煤',weight:3000,window:'48h 内',objective:'cost'};
+  var r2=computeAll(i2,{fleet:true,agreePort:true,spur:true});
+  var lowW=Math.round(r2.plans[0].cost*0.92/10000*10)/10;
+  addLedger({type:'inq',from:'RZ',to:'HD',cargo:'动力煤',weight:3000,
+    summary:'6 家报价 · 最低 '+lowW+' 万元（万华供应链）',
+    demo:true,detail:{suppliers:[],vs_smart_cny:Math.round(r2.plans[0].cost)}});
+  var t=Date.now();
+  state.ledger[0].time=new Date(t-2*864e5).toLocaleString('zh-CN',{hour12:false});
+  state.ledger[1].time=new Date(t-5*864e5).toLocaleString('zh-CN',{hour12:false});
+  renderLedger();
+}
 </script>
 </body>
 </html>
